@@ -1,6 +1,7 @@
 var fs      = require('fs'),
     url     = require('url'),
     when    = require('when'),
+    path    = require('path'),
     errors  = require('./server/errorHandling');
 
 function writeConfigFile() {
@@ -77,7 +78,7 @@ exports.loadConfig = function () {
     var loaded = when.defer();
     /* Check for config file and copy from config.example.js
         if one doesn't exist. After that, start the server. */
-    fs.exists('config.js', function checkConfig(configExists) {
+    fs.exists(path.join(__dirname, '../config.js'), function checkConfig(configExists) {
         if (configExists) {
             validateConfigEnvironment().then(loaded.resolve).otherwise(loaded.reject);
         } else {

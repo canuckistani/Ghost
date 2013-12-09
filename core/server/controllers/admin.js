@@ -108,6 +108,9 @@ adminControllers = {
 
         if (type === 'image/jpeg' || type === 'image/png' || type === 'image/gif') {
             getUniqueFileName(dir, basename, ext, null, function (filename) {
+                console.log(JSON.stringify(process.env, null, '  '));
+                console.log(__dirname);
+                console.log(tmp_path, filename);
                 renameFile(filename);
             });
         } else {
